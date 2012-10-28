@@ -1,11 +1,11 @@
 Summary:	GNU Core-utils - basic command line utilities
 Name:		coreutils
-Version:	8.19
-Release:	2
+Version:	8.20
+Release:	1
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
-# Source0-md5:	1a01231a2f3ed37c0efc073ccdda9375
+# Source0-md5:	3d69af8f561fce512538a9fe85f147ff
 Patch0:		%{name}-uname-cpuinfo.patch
 Patch1:		%{name}-mem.patch
 URL:		http://www.gnu.org/software/coreutils/
