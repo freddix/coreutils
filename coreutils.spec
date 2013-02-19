@@ -1,11 +1,11 @@
 Summary:	GNU Core-utils - basic command line utilities
 Name:		coreutils
-Version:	8.20
+Version:	8.21
 Release:	1
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
-# Source0-md5:	3d69af8f561fce512538a9fe85f147ff
+# Source0-md5:	065ba41828644eca5dd8163446de5d64
 Patch0:		%{name}-uname-cpuinfo.patch
 Patch1:		%{name}-mem.patch
 URL:		http://www.gnu.org/software/coreutils/
@@ -129,6 +129,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/nl
 %attr(755,root,root) %{_bindir}/nohup
 %attr(755,root,root) %{_bindir}/nproc
+%attr(755,root,root) %{_bindir}/numfmt
 %attr(755,root,root) %{_bindir}/od
 %attr(755,root,root) %{_bindir}/paste
 %attr(755,root,root) %{_bindir}/pathchk
