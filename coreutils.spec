@@ -1,13 +1,12 @@
+# based on PLD Linux spec git://git.pld-linux.org/packages/coreutils.git
 Summary:	GNU Core-utils - basic command line utilities
 Name:		coreutils
-Version:	8.22
-Release:	1
+Version:	8.23
+Release:	2
 License:	GPL v3+
-Group:		Applications/System
+Group:		Core/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
-# Source0-md5:	8fb0ae2267aa6e728958adc38f8163a2
-Patch0:		%{name}-uname-cpuinfo.patch
-Patch1:		%{name}-mem.patch
+# Source0-md5:	abed135279f87ad6762ce57ff6d89c41
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	attr-devel
@@ -30,9 +29,6 @@ fileutils, sh-utils, and textutils packages.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-
 %{__sed} -i -e "s|GNU/Linux|Freddix|" m4/host-os.m4
 %{__sed} -i -e "s|COLUMNS||" tests/envvar-check
 
@@ -43,10 +39,9 @@ fileutils, sh-utils, and textutils packages.
 %{__autoheader}
 %{__automake}
 %configure \
-	DEFAULT_POSIX2_VERSION=200112 alternative=199209	\
 	--disable-silent-rules					\
 	--enable-install-program=arch				\
-	--enable-no-install-program=hostname,kill,uptime
+	--enable-no-install-program=groups,hostname,kill,uptime
 %{__make}
 
 %if 0
@@ -56,14 +51,13 @@ fileutils, sh-utils, and textutils packages.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/bin,/sbin,%{_bindir},%{_sbindir},/etc/pam.d}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_sbindir},/etc/pam.d}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 # provided by other packages
-rm -f $RPM_BUILD_ROOT%{_mandir}/*/man1/{hostname,kill,uptime}.1
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/kk/LC_TIME
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/kk/LC_TIME
 
 %find_lang %{name}
 
@@ -109,7 +103,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/false
 %attr(755,root,root) %{_bindir}/fmt
 %attr(755,root,root) %{_bindir}/fold
-%attr(755,root,root) %{_bindir}/groups
 %attr(755,root,root) %{_bindir}/head
 %attr(755,root,root) %{_bindir}/hostid
 %attr(755,root,root) %{_bindir}/id
